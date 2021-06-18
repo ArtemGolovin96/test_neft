@@ -2,9 +2,13 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Component } from "react";
 import { connect } from "react-redux";
-import { onChangeInputIhaveAction } from "./redux/action";
+import Select from "react-select";
+import { onChangeInputIhaveAction, getCurrencyAction } from "./redux/action";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getCurrencyActionProps();
+  }
   render() {
     return (
       <main>
@@ -77,7 +81,7 @@ class App extends Component {
                 <input
                   className="inputihave"
                   type="text"
-                  onChange={(e) => this.onChangeInputIhaveActionProps(e)}
+                  onChange={(e) => this.props.onChangeInputIhaveActionProps(e)}
                 ></input>
                 <p className="inputp" id="inputp1">
                   1 RUB = 0.0135 USD
@@ -130,7 +134,11 @@ class App extends Component {
                     <option className="option2">JPY</option>
                   </select>
                 </div>
-                <input className="inputiwant" type="text"></input>
+                <input
+                  className="inputiwant"
+                  type="text"
+                  value={this.props.valueIwant}
+                ></input>
                 <p className="inputp" id="inputp2">
                   1 USD = 73.8896 RUB
                 </p>
@@ -147,6 +155,7 @@ const mapStateToProps = (state) => {
   return {
     from: state.from,
     to: state.to,
+    valueIwant: state.valueIwant,
   };
 };
 
@@ -154,6 +163,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onChangeInputIhaveActionProps: (e) => {
       dispatch(onChangeInputIhaveAction(e.target.value));
+    },
+    onChangeInputIhaveActionProps: (e) => {
+      dispatch(onChangeInputIhaveAction(e.target.value));
+    },
+    getCurrencyActionProps: () => {
+      dispatch(getCurrencyAction());
     },
   };
 };
