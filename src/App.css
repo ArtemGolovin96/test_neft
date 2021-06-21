@@ -243,7 +243,7 @@ input:focus {
 .burger {
   display: none;
 }
-@media (max-device-width: 480px) and (max-device-height: 875px) {
+@media (min-width: 375px) {
   .header {
     width: 100%;
   }
@@ -285,7 +285,7 @@ input:focus {
 
   .iwant {
     position: absolute;
-    right: 70px;
+    right: 95px;
     top: 500px;
   }
 }
