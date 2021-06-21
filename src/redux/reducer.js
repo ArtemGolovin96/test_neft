@@ -2,30 +2,44 @@
 import store from "./store";
 
 const globalState = {
-  from: "RUB",
-  to: "USD",
-  fetchengCur: false,
-  timeOutId: "",
-  allCurrArray: [],
+  selectedCurr: "USD",
+  allCurrObj: {},
+  selectedCurrValue: 0,
+  inputRub: "",
+  result: 0,
 };
 
 export default function reducer(state = globalState, action) {
   switch (action.type) {
     case "DID_MOUNT_GET_CURR":
-      fetch("https://www.cbr-xml-daily.ru/latest.js")
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data.rates);
-          return { ...state, allCurrArray: data.rates };
-        });
+      console.log(action.payload.data);
+      return { ...state, allCurrObj: action.payload.data };
+
     case "ONCHANGE_INPUT_IHAVE":
-      console.log(action.payload);
+      if (!isNaN(+action.payload.value)) {
+        return { ...state, result: +action.payload.value };
+      }
+      alert("Пожалуйста введите число!");
+
     case "ONCHANGE_INPUT_IWANT":
       console.log(action.payload);
+
     case "GET_CUR":
       console.log(action.payload);
+
+    case "ON_CHANGE_CURR_FROM_BUTTON":
+      return { ...state, selectedCurr: action.payload.curr };
+
+    case "GET_VALUE":
+      let imCurrObj = { ...state.allCurrObj };
+      for (let key in imCurrObj) {
+        if (key === state.selectedCurr) {
+          return {
+            ...state,
+            selectedCurrValue: imCurrObj[key],
+          };
+        }
+      }
 
     default:
       return state;
