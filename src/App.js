@@ -39,6 +39,7 @@ class App extends Component {
               src="https://img.icons8.com/plasticine/100/000000/currency-exchange.png"
             />
           </div>
+          <button className="burger">МЕНЮ</button>
           <nav className="navigate">
             <p className="navp">БАНК</p>
             <p className="navp">БИЗНЕС</p>

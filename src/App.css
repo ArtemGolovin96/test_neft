@@ -239,3 +239,53 @@ input:focus {
   left: 550px;
   top: 260px;
 }
+
+.burger {
+  display: none;
+}
+@media (max-device-width: 480px) and (max-device-height: 875px) {
+  .header {
+    width: 100%;
+  }
+
+  .navigate {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+    background-color: #833ae0;
+    border: none;
+  }
+
+  .burger:active {
+    display: block;
+    background-color: #833ae0;
+    border: none;
+    color: #e0c13a;
+  }
+
+  .logo {
+    margin: 0;
+  }
+
+  .vhod {
+    width: 15%;
+  }
+
+  .konverter {
+    margin: 0px 0px 0px -200px;
+  }
+
+  .changebutton {
+    position: absolute;
+    right: 350px;
+    top: 170px;
+  }
+
+  .iwant {
+    position: absolute;
+    right: 70px;
+    top: 500px;
+  }
+}
